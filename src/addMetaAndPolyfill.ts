@@ -2,16 +2,13 @@ import * as fs from "fs";
 import * as path from "path";
 import { listupFiles } from "./utils/listupFiles";
 
-// import program from "commander"
-
 import program from "commander";
-
 const taskLogPrefix = "addMetaAndPolyfill：";
 
 program
-  .usage('-src path_to_target')
-  .option('--src <value>', '対象フォルダー')
-  .option('--polyfill <value>', 'ポリフィルのパス')
+  .usage("-src path_to_target")
+  .option("--src <value>", "対象フォルダー")
+  .option("--polyfill <value>", "ポリフィルのパス")
   .parse(process.argv);
 
 const addMeta = (htmlCode: string): string => {
@@ -20,11 +17,7 @@ const addMeta = (htmlCode: string): string => {
   if (htmlCode.includes("X-UA-Compatible") === true) {
     return htmlCode;
   }
-
-  return htmlCode.replace(
-    /(\<meta charset="(UTF-8|utf-8)".*\>)/,
-    `$1\n  ${metaTag}`
-  );
+  return htmlCode.replace(/(\<head\>)/, `$1\n  ${metaTag}`);
 };
 
 const addPolyfill = (htmlCode: string): string => {
@@ -40,10 +33,8 @@ const addPolyfill = (htmlCode: string): string => {
     console.log(`${taskLogPrefix}指定のポリフィルは設定済みです`);
     return htmlCode;
   }
-
   console.log(`${taskLogPrefix}ポリフィルを設定しました`);
-
-  return htmlCode.replace(/(.*<\/head>)/, `  ${polyfillTag}$1`);
+  return htmlCode.replace(/(.*<\/head>)/, `  ${polyfillTag}\n$1`);
 };
 
 export const modifyCodes = async (targetFileList: string[]): Promise<void> => {
@@ -57,7 +48,7 @@ export const modifyCodes = async (targetFileList: string[]): Promise<void> => {
 
 export const addMetaAndPolyfill = () => {
   console.log(`${taskLogPrefix}IE11向けにHTMLコードを編集します`);
-//  const targetFolder = process.env.npm_package_config_src;
+  //  const targetFolder = process.env.npm_package_config_src;
 
   const targetFolder: string | unknown = program.src;
 
