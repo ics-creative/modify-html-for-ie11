@@ -1,7 +1,9 @@
 {
-  "name": "@ics/modify-html-for-ie11",
-  "version": "0.8.0",
-
+  "name": "ics-ie11-tools",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "IE11用にX-UA-Compatibleを設定し、</head>の末尾にpolyfillを挿入します",
   "repository": "https://ics-kano@github.com/ics-creative/modify-html-for-ie11.git",
   "author": "ics-kano <takeshi.kano@ics-web.jp>",
