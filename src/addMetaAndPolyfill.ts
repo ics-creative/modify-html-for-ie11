@@ -35,10 +35,7 @@ const addPolyfill = (htmlCode: string): string => {
     return htmlCode;
   }
 
-  const polyfillTag = `<!-- @ics/addMetaAndPolyfill -->
-  <script src="${polyfillPath}" defer></script>
-  <!-- / @ics/addMetaAndPolyfill -->
-`;
+  const polyfillTag = `<script src="${polyfillPath}" defer></script>`;
   if (htmlCode.includes(polyfillTag) === true) {
     console.log(`${taskLogPrefix}指定のポリフィルは設定済みです`);
     return htmlCode;

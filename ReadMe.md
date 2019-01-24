@@ -1,4 +1,5 @@
-# IE11対応用パッケージ
+# IE11対応用utilsパッケージ
 
-IE11用にX-UA-Compatibleを設定し、`</head>`タグの直前にpolyfillを挿入します
+IE11対応用に使えるutilsです。
+
 
