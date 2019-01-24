@@ -43,7 +43,7 @@ const addPolyfill = (htmlCode: string): string => {
 
   console.log(`${taskLogPrefix}ポリフィルを設定しました`);
 
-  return htmlCode.replace(/(.*<\/head>)/, `  ${polyfillTag}\n$1`);
+  return htmlCode.replace(/(.*<\/head>)/, `  ${polyfillTag}$1`);
 };
 
 export const modifyCodes = async (targetFileList: string[]): Promise<void> => {
